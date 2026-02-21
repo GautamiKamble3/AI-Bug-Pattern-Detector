@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>AI Bug Pattern Detector</title>
+
+```
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                    url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+    }
+
+    .navbar {
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 12px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        background: #e74c3c;
+        padding: 6px 12px;
+        border-radius: 5px;
+    }
+
+    .container {
+        width: 85%;
+        max-width: 1000px;
+        margin: 40px auto;
+        background: rgba(255,255,255,0.95);
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+        color: #0b3d91;
+    }
+
+    .hero-img {
+        width: 120px;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    button {
+        background: linear-gradient(135deg, #0078D4, #005fa3);
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    .bugs-box {
+        background: #fff4f4;
+        border: 1px solid #ffb3b3;
+        padding: 15px;
+        border-radius: 8px;
+        display: inline-block;
+        text-align: left;
+        margin-top: 15px;
+        width: 80%;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+        font-size: 14px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+    }
+
+    th {
+        background: #0b3d91;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background: #f5f7fa;
+    }
+
+    tr:hover {
+        background: #eef3ff;
+    }
+
+    .download-btn {
+        background: #27ae60;
+        padding: 6px 10px;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+    footer {
+        margin-top: 25px;
+        font-size: 13px;
+        color: #555;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="navbar">
+    <div>🐍 AI Bug Pattern Detector</div>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+
+    <img class="hero-img" src="https://cdn-icons-png.flaticon.com/512/2721/2721295.png" alt="Python">
+
+    <h1>Upload Python File</h1>
+    <p>Automatically detect syntax errors, logical issues, and unused variables.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="codefile" required>
+        <br><br>
+        <button type="submit">🔍 Detect Bugs</button>
+    </form>
+
+    {% if bugs %}
+        <h3>Detected Bugs</h3>
+        <div class="bugs-box">
+            <ul>
+                {% for bug in bugs %}
+                    <li>{{ bug }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <h3>Previous Reports</h3>
+
+    <table>
+        <tr>
+            <th>Filename</th>
+            <th>Bugs</th>
+            <th>Timestamp</th>
+            <th>PDF</th>
+        </tr>
+
+        {% for r in reports %}
+        <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td><a class="download-btn" href="/download/{{ r[0] }}">Download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <footer>
+        Professional Python Static Code Analysis Tool • Flask • SQLite • PDF Reports
+    </footer>
+
+</div>
+```
+
+</body>
+</html>
